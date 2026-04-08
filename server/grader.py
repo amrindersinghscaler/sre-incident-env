@@ -21,8 +21,10 @@ def grade_task(task_id: str, cluster_snapshot: Dict[str, Any], action_history: L
 def _weighted_score(results: List[Dict]) -> float:
     total_weight = sum(r["weight"] for r in results)
     if total_weight == 0:
-        return 0.0
-    return sum(r["score"] * r["weight"] for r in results) / total_weight
+        return 0.001
+    raw = sum(r["score"] * r["weight"] for r in results) / total_weight
+    # Clamp to strict (0, 1) — validator rejects exactly 0.0 or 1.0
+    return min(max(raw, 0.001), 0.999)
 
 
 # ═══════════════════════════════════════════════════════════════════
