@@ -1,0 +1,21 @@
+[project]
+name = "sre-incident-env"
+version = "1.0.0"
+description = "SRE Incident Response OpenEnv environment for training AI agents to diagnose and resolve infrastructure incidents"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openenv-core>=0.2.2",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.0.0",
+    "openai>=1.0.0",
+    "huggingface-hub>=0.20.0",
+]
+
+[project.scripts]
+server = "server.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
